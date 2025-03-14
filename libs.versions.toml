@@ -4,6 +4,7 @@ spring-boot = "3.4.3"
 spring-dependency-management = "1.1.7"
 spring-doc = "2.3.0"
 google-protobuf = "0.9.4"
+validation-api = "3.1.1"
 
 [libraries]
 lombok = { module = "org.projectlombok:lombok" }
@@ -22,6 +23,7 @@ junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher
 micrometer-tracing-bridge-otel = { module = "io.micrometer:micrometer-tracing-bridge-otel" }
 opentelemetry-exporter-otlp = { module = "io.opentelemetry:opentelemetry-exporter-otlp" }
 grpc-services = { module = "io.grpc:grpc-services" }
+validation-api = { module = "jakarta.validation:jakarta.validation-api", version.ref="validation-api"}
 
 [plugins]
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }

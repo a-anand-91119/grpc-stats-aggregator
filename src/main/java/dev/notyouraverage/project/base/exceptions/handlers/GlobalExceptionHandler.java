@@ -8,9 +8,9 @@ import dev.notyouraverage.project.base.dtos.response.wrapper.ErrorResponse;
 import dev.notyouraverage.project.base.dtos.response.wrapper.ResponseWrapper;
 import dev.notyouraverage.project.base.enums.ErrorCode;
 import dev.notyouraverage.project.base.exceptions.RestException;
+import lombok.extern.slf4j.Slf4j;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Path;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -29,8 +29,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@ControllerAdvice
 @Slf4j
+@ControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = { RestException.class })

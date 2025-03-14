@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+
+option java_multiple_files = true;
+option java_package = "dev.notyouraverage.project.one.proto";
+option java_outer_classname = "NameStatsProto";
+
+service NameService {
+  rpc GetNameStats (GetNameStatsRequest) returns (GetNameStatsResponse) {}
+  rpc GetAllNameStats (google.protobuf.Empty) returns (stream GetNameStatsResponse) {}
+}
+
+message GetNameStatsRequest {
+  string name = 1;
+}
+
+message GetNameStatsResponse {
+  string name = 1;
+  int32 count = 2;
+}

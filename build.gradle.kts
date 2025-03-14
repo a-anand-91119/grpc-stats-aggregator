@@ -31,11 +31,12 @@ extra["springGrpcVersion"] = "0.5.0"
 
 dependencies {
 	implementation(libs.spring.boot.actuator)
-	implementation(libs.spring.boot.web)
 	implementation(libs.spring.boot.grpc)
-	implementation(libs.spring.boot.data.redis)
+	implementation(libs.spring.boot.web)
 	implementation(libs.springdoc.webmvc.ui)
+	implementation(libs.spring.boot.data.redis)
 	implementation(libs.grpc.services)
+	implementation(libs.validation.api)
 
 	implementation(libs.opentelemetry.exporter.otlp)
 	implementation(libs.micrometer.tracing.bridge.otel)
