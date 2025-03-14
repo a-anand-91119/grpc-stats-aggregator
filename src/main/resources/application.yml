@@ -1,3 +1,5 @@
+server:
+  port: 8082
 spring:
   application:
     name: grpc-stats-aggregator
@@ -5,3 +7,6 @@ spring:
     compose:
       enabled: true
       file: ./dependencies/grpc-stats-aggregator/compose.yaml
+project:
+  ui-app:
+    hosts: "*"
