@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: grpc-stats-aggregator
+  docker:
+    compose:
+      enabled: true
+      file: ./dependencies/grpc-stats-aggregator/compose.yaml

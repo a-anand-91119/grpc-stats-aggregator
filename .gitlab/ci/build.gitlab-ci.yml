@@ -1,0 +1,26 @@
+cache:
+  key: gradle-cache
+  paths:
+    - .gradle/
+    - build/
+
+spotless-formatting-check:
+  image: gradle:8.12.1-jdk23-alpine
+  stage: prerequisites
+  script:
+    - ./gradlew --no-daemon spotlessCheck
+  interruptible: true
+
+unit-test:
+  image: gradle:8.12.1-jdk23-alpine
+  stage: prerequisites
+  script:
+    - ./gradlew --no-daemon test
+  interruptible: true
+
+compile-and-build-jar:
+  image: gradle:8.12.1-jdk23-alpine
+  stage: build
+  script:
+    - ./gradlew --no-daemon clean build -x spotlessCheck test
+  interruptible: true

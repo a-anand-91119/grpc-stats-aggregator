@@ -2,9 +2,10 @@ import com.google.protobuf.gradle.id
 
 plugins {
 	java
-	id("org.springframework.boot") version "3.4.3"
-	id("io.spring.dependency-management") version "1.1.7"
-	id("com.google.protobuf") version "0.9.4"
+	alias(libs.plugins.springframework.boot)
+	alias(libs.plugins.spring.dependency.management)
+	alias(libs.plugins.spotless)
+	alias(libs.plugins.google.protobuf)
 }
 
 group = "dev.notyouraverage.project.one.grpc.aggregator"
@@ -29,19 +30,24 @@ repositories {
 extra["springGrpcVersion"] = "0.5.0"
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-actuator")
-	implementation("org.springframework.boot:spring-boot-starter-data-redis")
-	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("io.grpc:grpc-services")
-	implementation("io.micrometer:micrometer-tracing-bridge-brave")
-	implementation("org.springframework.grpc:spring-grpc-server-web-spring-boot-starter")
-	compileOnly("org.projectlombok:lombok")
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	developmentOnly("org.springframework.boot:spring-boot-docker-compose")
-	annotationProcessor("org.projectlombok:lombok")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.springframework.grpc:spring-grpc-test")
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	implementation(libs.spring.boot.actuator)
+	implementation(libs.spring.boot.web)
+	implementation(libs.spring.boot.grpc)
+	implementation(libs.spring.boot.data.redis)
+	implementation(libs.springdoc.webmvc.ui)
+	implementation(libs.grpc.services)
+
+	implementation(libs.opentelemetry.exporter.otlp)
+	implementation(libs.micrometer.tracing.bridge.otel)
+
+	compileOnly(libs.lombok)
+	developmentOnly(libs.spring.boot.compose)
+	developmentOnly(libs.spring.boot.devtools)
+	annotationProcessor(libs.lombok)
+
+	testImplementation(libs.spring.boot.test)
+	testImplementation(libs.spring.grpc.test)
+	testRuntimeOnly(libs.junit.platform.launcher)
 }
 
 dependencyManagement {
@@ -73,4 +79,13 @@ protobuf {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+spotless {
+	java {
+		removeUnusedImports()
+		eclipse("4.29").configFile("spotless.xml")
+		trimTrailingWhitespace()
+		endWithNewline()
+	}
 }

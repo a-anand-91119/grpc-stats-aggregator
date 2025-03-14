@@ -1,0 +1,8 @@
+include:
+- local: ".gitlab/ci/*.gitlab-ci.yml"
+
+stages:
+- prerequisites
+- build
+- dockerize
+- deploy

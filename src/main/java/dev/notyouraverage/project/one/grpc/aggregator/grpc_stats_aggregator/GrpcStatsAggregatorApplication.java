@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class GrpcStatsAggregatorApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(GrpcStatsAggregatorApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(GrpcStatsAggregatorApplication.class, args);
+    }
 
 }
