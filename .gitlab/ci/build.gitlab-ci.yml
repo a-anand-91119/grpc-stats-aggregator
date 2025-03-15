@@ -21,6 +21,15 @@ spotless-formatting-check-2:
     - ./gradlew --no-daemon spotlessCheck
   interruptible: true
 
+docker-build:
+  image: jburgess/gradle-protoc:latest
+  services:
+    - docker:18.09.7-dind
+  stage: prerequisites
+  script:
+    - ./gradlew --no-daemon spotlessCheck
+
+
 #
 #unit-test:
 #  image: gradle:8.12.1-jdk23-alpine
