@@ -9,6 +9,7 @@ spotless-formatting-check:
   stage: prerequisites
   script:
     - apk add gcompat
+    - apk add --no-cache libc6-compat
     - ./gradlew --no-daemon spotlessCheck
   interruptible: true
 
