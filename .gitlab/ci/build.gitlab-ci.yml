@@ -9,15 +9,25 @@ spotless-formatting-check:
   stage: prerequisites
   script:
     - apk add --no-cache libc6-compat
+    - apk add libatomic
     - ./gradlew --no-daemon spotlessCheck
   interruptible: true
 
-unit-test:
+spotless-formatting-check-2:
   image: gradle:8.12.1-jdk23-alpine
   stage: prerequisites
   script:
-    - ./gradlew --no-daemon test
+    - apk add --no-cache libc6-compat
+    - ./gradlew --no-daemon spotlessCheck
   interruptible: true
+
+#
+#unit-test:
+#  image: gradle:8.12.1-jdk23-alpine
+#  stage: prerequisites
+#  script:
+#    - ./gradlew --no-daemon test
+#  interruptible: true
 
 compile-and-build-jar:
   image: gradle:8.12.1-jdk23-alpine
