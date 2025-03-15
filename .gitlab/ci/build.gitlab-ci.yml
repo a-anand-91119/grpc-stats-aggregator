@@ -4,10 +4,26 @@ cache:
     - .gradle/
     - build/
 
+spotless-formatting-check-non-alpine:
+  image: gradle:8.12.1-jdk23
+  stage: prerequisites
+  script:
+    - ./gradlew --no-daemon spotlessCheck
+  interruptible: true
+
+spotless-formatting-check-non-alpine-with-install:
+  image: gradle:8.12.1-jdk23
+  stage: prerequisites
+  script:
+    - apk add --no-cache protobuf grpc
+    - ./gradlew --no-daemon spotlessCheck
+  interruptible: true
+
 spotless-formatting-check:
   image: gradle:8.12.1-jdk23-alpine
   stage: prerequisites
   script:
+    - apk add --no-cache protobuf grpc
     - ./gradlew --no-daemon spotlessCheck
   interruptible: true
 
