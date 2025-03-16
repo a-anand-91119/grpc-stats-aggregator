@@ -13,10 +13,12 @@ service NameService {
 }
 
 message GetNameStatsRequest {
-  string name = 1;
+  string requestId = 1;
+  string name = 2;
 }
 
 message GetNameStatsResponse {
-  string name = 1;
-  int32 count = 2;
+  string requestId = 1;
+  string name = 2;
+  int32 count = 3;
 }

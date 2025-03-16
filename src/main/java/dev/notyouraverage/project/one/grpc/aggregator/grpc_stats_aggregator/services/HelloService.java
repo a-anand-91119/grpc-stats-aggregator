@@ -22,6 +22,7 @@ public class HelloService extends NameServiceGrpc.NameServiceImplBase {
             throw new RuntimeException();
         }
         GetNameStatsResponse getNameStatsResponse = GetNameStatsResponse.newBuilder()
+                .setRequestId(request.getRequestId())
                 .setName(request.getName())
                 .setCount(200)
                 .build();
