@@ -90,3 +90,7 @@ spotless {
 		endWithNewline()
 	}
 }
+
+tasks.named("generateProto") {
+	finalizedBy("spotlessApply")
+}
