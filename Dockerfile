@@ -1,5 +1,5 @@
 # Stage 1: Build
-FROM docker.io/amazoncorretto:23 AS builder
+FROM docker.io/gradle:8.12.1-jdk23 AS builder
 WORKDIR /app
 
 # Copy only necessary files to take advantage of caching
@@ -19,7 +19,7 @@ COPY src src
 RUN ./gradlew --no-daemon clean build
 
 # Stage 2: Runtime
-FROM docker.io/amazoncorretto:23
+FROM docker.io/amazoncorretto:23 AS runtime
 WORKDIR /app
 
 # Copy the built application from the builder stage
