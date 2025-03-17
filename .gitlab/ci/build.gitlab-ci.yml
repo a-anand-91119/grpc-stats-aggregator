@@ -24,3 +24,16 @@ compile-and-build-jar:
   script:
     - ./gradlew --no-daemon clean build -x spotlessCheck test
   interruptible: true
+
+docker-image-build:
+  stage: dockerize
+  image: quay.io/buildah/stable
+  variables:
+    STORAGE_DRIVER: vfs
+    BUILDAH_FORMAT: docker
+  before_script:
+    - echo "$CI_REGISTRY_PASSWORD" | buildah login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
+  script:
+    - buildah build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+    - buildah push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+  interruptible: true
