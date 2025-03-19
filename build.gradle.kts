@@ -33,6 +33,7 @@ dependencies {
 	implementation(libs.spring.boot.actuator)
 	implementation(libs.spring.boot.grpc)
 	implementation(libs.spring.boot.web)
+	implementation(libs.spring.boot.data.redis)
 	implementation(libs.springdoc.webmvc.ui)
 	implementation(libs.spring.boot.data.redis)
 	implementation(libs.grpc.services)

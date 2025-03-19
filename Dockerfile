@@ -11,12 +11,12 @@ COPY spotless.xml spotless.xml
 COPY libs.versions.toml libs.versions.toml
 
 # Pre-fetch dependencies for caching
-RUN ./gradlew --no-daemon dependencies
-RUN ./gradlew --no-daemon check --dry-run
+RUN ./gradlew dependencies
+RUN ./gradlew check --dry-run
 
 # Copy source code and build the application
 COPY src src
-RUN ./gradlew --no-daemon clean build
+RUN ./gradlew clean build
 
 # Stage 2: Runtime
 FROM docker.io/amazoncorretto:23 AS runtime

@@ -1,10 +1,12 @@
 package dev.notyouraverage.project.one.grpc.aggregator.grpc_stats_aggregator.services;
 
 import com.google.protobuf.Empty;
+import dev.notyouraverage.project.one.grpc.aggregator.grpc_stats_aggregator.helpers.StatsHelper;
 import dev.notyouraverage.project.one.proto.GetNameStatsRequest;
 import dev.notyouraverage.project.one.proto.GetNameStatsResponse;
 import dev.notyouraverage.project.one.proto.NameServiceGrpc;
 import io.grpc.stub.StreamObserver;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.grpc.server.service.GrpcService;
 
@@ -12,7 +14,11 @@ import java.util.UUID;
 
 @Slf4j
 @GrpcService
-public class HelloService extends NameServiceGrpc.NameServiceImplBase {
+@RequiredArgsConstructor
+public class NameService extends NameServiceGrpc.NameServiceImplBase {
+
+    private final StatsHelper statsHelper;
+
     @Override
     public void getNameStats(GetNameStatsRequest request, StreamObserver<GetNameStatsResponse> responseObserver) {
         if (request.getName().startsWith("error")) {
@@ -24,7 +30,7 @@ public class HelloService extends NameServiceGrpc.NameServiceImplBase {
         GetNameStatsResponse getNameStatsResponse = GetNameStatsResponse.newBuilder()
                 .setRequestId(request.getRequestId())
                 .setName(request.getName())
-                .setCount(200)
+                .setCount(statsHelper.incrementAndGetCount(request.getName()))
                 .build();
         responseObserver.onNext(getNameStatsResponse);
         responseObserver.onCompleted();
