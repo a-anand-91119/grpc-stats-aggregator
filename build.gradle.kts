@@ -42,6 +42,7 @@ dependencies {
 	implementation(libs.opentelemetry.exporter.otlp)
 	implementation(libs.micrometer.tracing.bridge.otel)
 
+	runtimeOnly(libs.micrometer.registry.prometheus)
 	compileOnly(libs.lombok)
 	developmentOnly(libs.spring.boot.compose)
 	developmentOnly(libs.spring.boot.devtools)

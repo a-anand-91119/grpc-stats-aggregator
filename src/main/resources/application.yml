@@ -25,6 +25,10 @@ management:
   otlp:
     tracing:
       endpoint: ${OLTP_TRACING_ENDPOINT:http://localhost:4318/v1/traces}
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 project:
   ui-app:
     hosts: "*"

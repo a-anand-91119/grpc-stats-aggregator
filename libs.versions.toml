@@ -24,6 +24,7 @@ micrometer-tracing-bridge-otel = { module = "io.micrometer:micrometer-tracing-br
 opentelemetry-exporter-otlp = { module = "io.opentelemetry:opentelemetry-exporter-otlp" }
 grpc-services = { module = "io.grpc:grpc-services" }
 validation-api = { module = "jakarta.validation:jakarta.validation-api", version.ref="validation-api"}
+micrometer-registry-prometheus = { module = "io.micrometer:micrometer-registry-prometheus" }
 
 [plugins]
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
