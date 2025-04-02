@@ -6,3 +6,9 @@ stages:
 - build
 - dockerize
 - deploy
+
+workflow:
+  rules:
+    - if: $CI_SERVER_URL == "https://gitlab.notyouraverage.dev"
+      when: always
+    - when: never
